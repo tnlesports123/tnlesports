@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التقديم إلى TNL TEAM</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #0d0d0d);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 20px 0 10px;
+      background: linear-gradient(90deg, red, green, blue, red);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgbGlow 3s infinite linear;
+    }
+
+    .description {
+      max-width: 600px;
+      font-size: 1em;
+      color: #ccc;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    form {
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      padding: 20px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      animation: slideUp 1s ease-in-out;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #333;
+      background-color: #1c1c1c;
+      color: white;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    input:focus {
+      border: 1px solid cyan;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #ff0055, #00ffaa);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #00ffaa;
+    }
+
+    .thank-you {
+      display: none;
+      color: lightgreen;
+      margin-top: 20px;
+      font-size: 1.2em;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    @keyframes rgbGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>TNL TEAM</h1>
+
+  <div class="description">
+    ما هو TNL؟ نحن فريق إلكتروني مخصص لعالم الألعاب التنافسية. نبحث عن لاعبين محترفين وطموحين للانضمام إلى مجتمعنا النشط والمميز. إذا كنت تؤمن بمهاراتك، وترغب في خوض تحديات جديدة والمشاركة في بطولات، نحن هنا لنصنع مستقبلك في عالم الـEsports.
+  </div>
+
+  <form id="applyForm">
+    <input type="text" id="name" placeholder="الاسم الكامل" required>
+    <input type="number" id="age" placeholder="العمر" required>
+    <input type="text" id="game" placeholder="اللعبة التي تحترفها" required>
+    <input type="email" id="email" placeholder="بريدك الإلكتروني" required>
+    <button type="submit">إرسال</button>
+  </form>
+
+  <div id="thankYouMessage" class="thank-you">شكراً لك! تم إرسال طلبك بنجاح.</div>
+
+  <div class="footer">
+    جميع الحقوق محفوظة لـ TNL ESPORTS <br>
+    <span style="color: orange;">تحذير: يرجى إدخال معلومات حقيقية فقط.</span>
+  </div>
+
+  <script>
+    const botToken = "7806169707:AAGYyo5tjV54gu1RmgTTh1IqdOf3dcfXeSQ";
+    const chatId = "5854920900";
+
+    document.getElementById("applyForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const game = document.getElementById("game").value;
+      const email = document.getElementById("email").value;
+
+      const message = `
+تقديم جديد إلى TNL TEAM:
+الاسم: ${name}
+العمر: ${age}
+اللعبة: ${game}
+البريد الإلكتروني: ${email}
+      `;
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        })
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById("applyForm").style.display = "none";
+          document.getElementById("thankYouMessage").style.display = "block";
+        } else {
+          alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
