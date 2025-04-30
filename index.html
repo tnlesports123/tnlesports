@@ -1,185 +1,156 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>التقديم إلى TNL TEAM</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الانضمام إلى TNL Esports</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #0d0d0d);
-      color: white;
+      font-family: 'Tajawal', sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+    }
+    .hero {
+      background: linear-gradient(to bottom, #001f3f, #000);
+      padding: 80px 20px;
       text-align: center;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-      align-items: center;
-      padding: 20px;
     }
-
-    h1 {
+    .hero h1 {
       font-size: 2.5em;
-      margin: 20px 0 10px;
-      background: linear-gradient(90deg, red, green, blue, red);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: rgbGlow 3s infinite linear;
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff;
     }
-
-    .description {
-      max-width: 600px;
-      font-size: 1em;
-      color: #ccc;
-      margin-bottom: 20px;
-      line-height: 1.6;
-    }
-
-    form {
-      background-color: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(5px);
-      padding: 20px;
-      border-radius: 15px;
-      width: 100%;
-      max-width: 450px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-      animation: slideUp 1s ease-in-out;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #333;
-      background-color: #1c1c1c;
-      color: white;
-      border-radius: 8px;
-      font-size: 1em;
-    }
-
-    input:focus {
-      border: 1px solid cyan;
-      outline: none;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(90deg, #ff0055, #00ffaa);
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 10px #00ffaa;
-    }
-
-    .thank-you {
-      display: none;
-      color: lightgreen;
+    .cta-button {
+      display: inline-block;
       margin-top: 20px;
-      font-size: 1.2em;
-      animation: fadeIn 1s ease-in-out;
+      padding: 12px 25px;
+      background: #00f0ff;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
     }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #888;
+    .cta-button:hover {
+      background: #0ff;
     }
-
-    @keyframes rgbGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .form-section {
+      padding: 50px 20px;
+      max-width: 600px;
+      margin: auto;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    form input, form textarea, form select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #111;
+      border: 1px solid #444;
+      color: #fff;
+      border-radius: 5px;
     }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
+    form button {
+      background: #0ff;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    form button:hover {
+      background: #00e0e0;
+    }
+    #preview {
+      display: none;
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
+  <section class="hero">
+    <h1>هل أنت مستعد للصعود إلى العالمية؟</h1>
+    <a href="#form" class="cta-button">قدّم الآن</a>
+  </section>
+  <section id="form" class="form-section">
+    <h2>استمارة الانضمام إلى TNL Esports</h2>
+    <form id="joinForm" enctype="multipart/form-data">
+      <input type="text" name="fullName" placeholder="الاسم الكامل" required />
+      <input type="text" name="nickname" placeholder="اسم اللاعب داخل اللعبة" required />
+      <input type="number" name="age" placeholder="العمر" required />
+      <input type="text" name="country" placeholder="الدولة / الجنسية" required />
+      <select name="game" required>
+        <option value="">اختر لعبتك الأساسية</option>
+        <option value="Valorant">Valorant</option>
+        <option value="PUBG">PUBG</option>
+        <option value="Call of Duty">Call of Duty</option>
+        <option value="أخرى">أخرى</option>
+      </select>
+      <input type="text" name="rank" placeholder="الرتبة / مستوى اللعب" required />
+      <input type="url" name="profileLink" placeholder="رابط مقاطع اللعب أو البروفايل" />
+      <textarea name="experience" placeholder="هل سبق لك اللعب ضمن فريق؟" rows="3"></textarea>
+      <textarea name="reason" placeholder="لماذا تريد الانضمام إلى الفريق؟" rows="3" required></textarea>
+      
+      <label for="photo" style="display:block; margin-top:15px; font-weight:bold;">أرسل صورتك الحقيقية مع كامل الوجه</label>
+      <input type="file" id="photo" name="photo" accept="image/*" required onchange="previewImage()">
+      <img id="preview" alt="معاينة الصورة">
 
-  <h1>TNL TEAM</h1>
-
-  <div class="description">
-    ما هو TNL؟ نحن فريق إلكتروني مخصص لعالم الألعاب التنافسية. نبحث عن لاعبين محترفين وطموحين للانضمام إلى مجتمعنا النشط والمميز. إذا كنت تؤمن بمهاراتك، وترغب في خوض تحديات جديدة والمشاركة في بطولات، نحن هنا لنصنع مستقبلك في عالم الـEsports.
-  </div>
-
-  <form id="applyForm">
-    <input type="text" id="name" placeholder="الاسم الكامل" required>
-    <input type="number" id="age" placeholder="العمر" required>
-    <input type="text" id="game" placeholder="اللعبة التي تحترفها" required>
-    <input type="email" id="email" placeholder="بريدك الإلكتروني" required>
-    <button type="submit">إرسال</button>
-  </form>
-
-  <div id="thankYouMessage" class="thank-you">شكراً لك! تم إرسال طلبك بنجاح.</div>
-
-  <div class="footer">
-    جميع الحقوق محفوظة لـ TNL ESPORTS <br>
-    <span style="color: orange;">تحذير: يرجى إدخال معلومات حقيقية فقط.</span>
-  </div>
+      <input type="text" name="contact" placeholder="البريد الإلكتروني أو Telegram / Discord" required />
+      <button type="submit">إرسال الطلب</button>
+    </form>
+    <div id="responseMsg" style="margin-top:15px;"></div>
+  </section>
 
   <script>
-    const botToken = "7806169707:AAGYyo5tjV54gu1RmgTTh1IqdOf3dcfXeSQ";
-    const chatId = "5854920900";
-
-    document.getElementById("applyForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const age = document.getElementById("age").value;
-      const game = document.getElementById("game").value;
-      const email = document.getElementById("email").value;
-
-      const message = `
-تقديم جديد إلى TNL TEAM:
-الاسم: ${name}
-العمر: ${age}
-اللعبة: ${game}
-البريد الإلكتروني: ${email}
-      `;
-
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: message
-        })
-      }).then(response => {
-        if (response.ok) {
-          document.getElementById("applyForm").style.display = "none";
-          document.getElementById("thankYouMessage").style.display = "block";
-        } else {
-          alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+    function previewImage() {
+      const file = document.getElementById('photo').files[0];
+      const preview = document.getElementById('preview');
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
         }
+        reader.readAsDataURL(file);
+      } else {
+        preview.style.display = 'none';
+        preview.src = '#';
+      }
+    }
+
+    document.getElementById("joinForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      let data = {};
+      formData.forEach((value, key) => data[key] = value);
+
+      const photoFile = document.getElementById("photo").files[0];
+      if (!photoFile || !photoFile.type.startsWith("image/")) {
+        document.getElementById("responseMsg").innerText = "يرجى تحميل صورة شخصية صحيحة.";
+        return;
+      }
+
+      const photoData = new FormData();
+      photoData.append("chat_id", "5854920900");
+      photoData.append("caption",
+        `طلب انضمام جديد:\nالاسم: ${data.fullName}\nالنك نيم: ${data.nickname}\nالعمر: ${data.age}\nالدولة: ${data.country}\nاللعبة: ${data.game}\nالرتبة: ${data.rank}\nالرابط: ${data.profileLink}\nالخبرة: ${data.experience}\nالسبب: ${data.reason}\nالتواصل: ${data.contact}`
+      );
+      photoData.append("photo", photoFile);
+
+      fetch("https://api.telegram.org/bot7774638878:AAFvBGSVfYmJDIOsXLNtWMEpDvs8tmLeqVg/sendPhoto", {
+        method: "POST",
+        body: photoData
+      }).then(response => {
+        document.getElementById("responseMsg").innerText = "تم إرسال الطلب بنجاح. سنقوم بالتواصل معك قريباً.";
+        this.reset();
+        document.getElementById("preview").style.display = "none";
+      }).catch(error => {
+        document.getElementById("responseMsg").innerText = "حدث خطأ أثناء الإرسال. حاول مرة أخرى.";
       });
     });
   </script>
-
 </body>
 </html>
